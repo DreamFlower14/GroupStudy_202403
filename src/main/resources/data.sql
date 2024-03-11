@@ -1,0 +1,1 @@
+INSERT INTO member (id, name) VALUES (1, '이름1')
