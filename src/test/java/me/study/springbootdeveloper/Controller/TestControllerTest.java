@@ -19,8 +19,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@SpringBootTest // 테스트용 애플리케이션 컨텍스트 생성
+@AutoConfigureMockMvc   // MockMvc 생성 및 자동 구성
 class TestControllerTest {
 
     @Autowired
@@ -32,13 +32,13 @@ class TestControllerTest {
     @Autowired
     private MemberRepository memberRepository;
 
-    @BeforeEach
+    @BeforeEach // 테스트 시작 전 실행하는 메서드
     public void mockMvcSetUp() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(context)
                 .build();
     }
 
-    @AfterEach
+    @AfterEach  // 테스트 끝나고 실행하는 메서드
     public void cleanUp() {
         memberRepository.deleteAll();
     }
@@ -57,6 +57,7 @@ class TestControllerTest {
         // then
         result
                 .andExpect(status().isOk())
+                //  응답의 0번째 값이 DB 에 저장한 값과 같은지 확인
                 .andExpect(jsonPath("$[0].id").value(savedMember.getId()))
                 .andExpect(jsonPath("$[0].name").value(savedMember.getName()));
     }

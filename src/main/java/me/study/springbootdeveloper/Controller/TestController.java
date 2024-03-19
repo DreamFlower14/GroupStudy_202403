@@ -24,8 +24,4 @@ public class TestController {
         System.out.println(getClass().getName() +".getAllMembers 끝!!!!");
         return members;
     }
-
-
-
-
 }
