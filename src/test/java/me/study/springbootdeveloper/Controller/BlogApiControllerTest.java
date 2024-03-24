@@ -1,9 +1,9 @@
 package me.study.springbootdeveloper.Controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import me.study.springbootdeveloper.DAO.AddArticleRequest;
-import me.study.springbootdeveloper.Repository.BlogRepository;
-import me.study.springbootdeveloper.domain.Article;
+import me.study.springbootdeveloper.DAO.Blog.AddArticleRequest;
+import me.study.springbootdeveloper.Repository.Blog.BlogRepository;
+import me.study.springbootdeveloper.domain.Blog.Article;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

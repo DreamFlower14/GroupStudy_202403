@@ -20,6 +20,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'       // 웹 관련 기능을 제공
     testImplementation 'org.springframework.boot:spring-boot-starter-test'  // 테스트 기능을 제공
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // JPA
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'  // 스프링 시큐리티를 사용하기 위한 스타터
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    testImplementation 'org.springframework.security:spring-security-test'
+
     runtimeOnly 'com.h2database:h2'                                         // H2 : 자바로 작성된 관계형 데이터베이스 관리 시스템, 인메모리 데이터베이스
     compileOnly 'org.projectlombok:lombok'                                  // lombok : @Getter @Setter 제공
     annotationProcessor 'org.projectlombok:lombok'

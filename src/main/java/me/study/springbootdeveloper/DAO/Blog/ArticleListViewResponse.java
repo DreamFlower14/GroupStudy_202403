@@ -1,7 +1,7 @@
-package me.study.springbootdeveloper.DAO;
+package me.study.springbootdeveloper.DAO.Blog;
 
 import lombok.Getter;
-import me.study.springbootdeveloper.domain.Article;
+import me.study.springbootdeveloper.domain.Blog.Article;
 
 @Getter
 public class ArticleListViewResponse {

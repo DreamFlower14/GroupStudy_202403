@@ -1,4 +1,4 @@
-package me.study.springbootdeveloper.DAO;
+package me.study.springbootdeveloper.DAO.Blog;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

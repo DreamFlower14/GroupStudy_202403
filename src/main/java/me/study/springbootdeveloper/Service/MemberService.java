@@ -1,6 +1,6 @@
 package me.study.springbootdeveloper.Service;
 
-import me.study.springbootdeveloper.DAO.Member;
+import me.study.springbootdeveloper.DAO.Blog.Member;
 import me.study.springbootdeveloper.Repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

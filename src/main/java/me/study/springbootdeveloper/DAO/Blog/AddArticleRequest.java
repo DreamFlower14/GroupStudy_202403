@@ -1,9 +1,9 @@
-package me.study.springbootdeveloper.DAO;
+package me.study.springbootdeveloper.DAO.Blog;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.study.springbootdeveloper.domain.Article;
+import me.study.springbootdeveloper.domain.Blog.Article;
 
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,6 +1,6 @@
 package me.study.springbootdeveloper.Controller;
 
-import me.study.springbootdeveloper.DAO.Member;
+import me.study.springbootdeveloper.DAO.Blog.Member;
 import me.study.springbootdeveloper.Service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

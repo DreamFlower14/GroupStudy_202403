@@ -1,6 +1,6 @@
 package me.study.springbootdeveloper.Controller;
 
-import me.study.springbootdeveloper.DAO.Member;
+import me.study.springbootdeveloper.DAO.Blog.Member;
 import me.study.springbootdeveloper.Repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
