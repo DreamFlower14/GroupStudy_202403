@@ -37,33 +37,35 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeRequests(auth -> auth
+                .authorizeRequests(auth -> auth     // 인증, 인가 설정
                         .requestMatchers(
                                 new AntPathRequestMatcher("/login"),
                                 new AntPathRequestMatcher("/signup"),
                                 new AntPathRequestMatcher("/user")
                         ).permitAll()
                         .anyRequest().authenticated())
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
+                .formLogin(formLogin -> formLogin   // 폼 기반 로그인 설정
+                        .loginPage("/login")    // 로그인 성공시 이동경로
                         .defaultSuccessUrl("/articles")
                 )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/login")
+                .logout(logout -> logout    // 로그아웃 설정
+                        .logoutSuccessUrl("/login") // 로그아웃 성공시 이동 경로
                         .invalidateHttpSession(true)
                 )
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)  // CSRF 비활성화
                 .build();
     }
-
+    
+    // 인증 관리자 관련 설정
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailService userDetailService) throws Exception {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userService);
+        authProvider.setUserDetailsService(userService);    // 사용자 정보 서비스 설정
         authProvider.setPasswordEncoder(bCryptPasswordEncoder);
         return new ProviderManager(authProvider);
     }
 
+    // 패스워드 인코더로 사용할 빈 등록
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
