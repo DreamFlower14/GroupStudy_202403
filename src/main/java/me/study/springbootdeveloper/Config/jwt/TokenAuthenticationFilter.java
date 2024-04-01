@@ -22,9 +22,13 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
 
+        // 요청 헤더의 AuthorizationHeader 키의 값 조회
         String authorizationHeader = request.getHeader(HEADER_AUTHORIZATION);
+        
+        // 가져온 값에서 접두사 제거
         String token = getAccessToken(authorizationHeader);
 
+        // 가져온 값이 유효한 값인지 확인, 유효할 때만 인증정보설정
         if (tokenProvider.validToken(token)) {
             Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);

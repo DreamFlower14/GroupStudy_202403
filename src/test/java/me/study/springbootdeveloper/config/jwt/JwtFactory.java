@@ -20,6 +20,7 @@ public class JwtFactory {
     private Date expiration = new Date(new Date().getTime() + Duration.ofDays(14).toMillis());
     private Map<String, Object> claims = emptyMap();
 
+    // Builder 패턴으로 설정이 필요한 데이터만 선택 설정
     @Builder
     public JwtFactory(String subject, Date issuedAt, Date expiration, Map<String, Object> claims) {
         this.subject = subject != null ? subject : this.subject;    // JwtFactory 함수의 파라미터 변수 subject 가 Null 일 경우 JwtFactory 클래스의 값 사용

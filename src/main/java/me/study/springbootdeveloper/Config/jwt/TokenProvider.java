@@ -37,11 +37,11 @@ public class TokenProvider {
 
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)   // 헤더 typ : JWT
-                .setIssuer(jwtProperties.getIssuer())           // 내용 iss : sunghh1004@naver.com ( properties.yml 에서 설정한 값 )
-                .setIssuedAt(now)                               // 내용 iat : 현재 시간
-                .setExpiration(expiry)                          // 내용 exp : expiry 멤버 변수값
-                .setSubject(user.getEmail())                    // 내용 sub : 유저의 이메일
-                .claim("id", user.getId())                   // 클레임 id : 유저의 ID
+                .setIssuer(jwtProperties.getIssuer())           // 내용 iss : 발급자
+                .setIssuedAt(now)                               // 내용 iat : 발급 시간
+                .setExpiration(expiry)                          // 내용 exp : 만료시간
+                .setSubject(user.getEmail())                    // 내용 sub : 발급의 목적
+                .claim("id", user.getId())                // 클레임 id : 유저의 ID
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())   // 서명 : 비밀값과 함께 해시값을 HS256 방식으로 암호화
                 .compact();
     }
@@ -64,9 +64,10 @@ public class TokenProvider {
      * 토큰 기반으로 인증 정보를 가져오는 메서드
      * */
     public Authentication getAuthentication(String token) {
-        Claims claims = getClaims(token);
-        Set<SimpleGrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+        Claims claims = getClaims(token);   // 클레임 정보
+        Set<SimpleGrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));   // ROLE_USER 라는 권한을 생성
 
+        // Spring Security 의 인증
         return new UsernamePasswordAuthenticationToken(new org.springframework.security.core.userdetails.User(claims.getSubject(), "", authorities), token, authorities);
     }
 
@@ -78,9 +79,12 @@ public class TokenProvider {
         return claims.get("id", Long.class);
     }
 
+    /**
+     * 클레임을 반환하는 메서드
+     * */
     private Claims getClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(jwtProperties.getSecretKey())
+                .setSigningKey(jwtProperties.getSecretKey())    // 복호화
                 .parseClaimsJws(token)
                 .getBody();
     }
